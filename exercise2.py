@@ -6,9 +6,6 @@ class Point2D:
     def __init__(self, x: float, y: float) -> None:
         self._coordinates = Vector([x, y])
 
-    def __iadd__(self, other: Vector) -> Point2D:
-        return Point2D(self.x + other[0], self.y + other[1])
-
     @property
     def x(self) -> float:
         return self._coordinates[0]
@@ -16,6 +13,12 @@ class Point2D:
     @property
     def y(self) -> float:
         return self._coordinates[1]
+
+    def __iadd__(self, other:Vector):
+        assert(2 == len(other._coordinates)), 'vector and point do not have the same length'
+        self._coordinates[0] = self._coordinates[0] + other[0]
+        self._coordinates[1] = self._coordinates[1] + other[1]
+        return self
 
 
 def test_point_construction() -> None:

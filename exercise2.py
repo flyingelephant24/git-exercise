@@ -20,6 +20,12 @@ class Point2D:
         self._coordinates[1] = self._coordinates[1] - other[1]
         return self
 
+    def __iadd__(self, other:Vector):
+        assert(2 == len(other._coordinates)), 'vector and point do not have the same length'
+        self._coordinates[0] = self._coordinates[0] + other[0]
+        self._coordinates[1] = self._coordinates[1] + other[1]
+        return self
+
 
 def test_point_construction() -> None:
     point = Point2D(1.0, 42.0)

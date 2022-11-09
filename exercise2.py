@@ -14,6 +14,12 @@ class Point2D:
     def y(self) -> float:
         return self._coordinates[1]
 
+    def __isub__(self, other:Vector):
+        assert(2 == len(other._coordinates)), 'vector and point do not have the same length'
+        self._coordinates[0] = self._coordinates[0] - other[0]
+        self._coordinates[1] = self._coordinates[1] - other[1]
+        return self
+
 
 def test_point_construction() -> None:
     point = Point2D(1.0, 42.0)
@@ -35,3 +41,5 @@ def test_point_vector_subtraction() -> None:
     point -= Vector([1.1, 2.2])
     assert isclose(point.x, -0.1)
     assert isclose(point.y, -0.2)
+
+test_point_vector_subtraction()
